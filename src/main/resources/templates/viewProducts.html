@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Products</title>
+</head>
+<body>
+    <h1>My Products</h1>
+    <p>Logged in as: <span th:text="${username}"></span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Processor</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Description</th>
+                <th>Category</th>
+                 <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.brand}"></td>
+                <td th:text="${product.model}"></td>
+                <td th:text="${product.processor}"></td>
+                <td th:text="${product.ram}"></td>
+                <td th:text="${product.storage}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.category.name}"></td>
+                
+                 <td th:text="${product.price}"></td>
+                <td>
+                    <img th:src="'data:image/jpeg;base64,' + ${product.imageBase64}" alt="Product Image" width="100"/>
+                </td>
+                <td>
+                    <a th:href="@{/view-product(id=${product.id})}">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <script>
+        function toggleQuantityInput() {
+            var quantityDropdown = document.getElementById('quantityDropdown');
+            var moreOptionInput = document.getElementById('moreQuantityInput');
+            var selectedValue = quantityDropdown.value;
+            moreOptionInput.style.display = selectedValue === 'more' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>Add Product</h1>
+    <form th:action="@{/addProduct}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" />
+        </div>
+        <div>
+            <label>Brand:</label>
+            <input type="text" th:field="*{brand}" />
+        </div>
+        <div>
+            <label>Model:</label>
+            <input type="text" th:field="*{model}" />
+        </div>
+        <div>
+            <label>Processor:</label>
+            <input type="text" th:field="*{processor}" />
+        </div>
+        <div>
+            <label>RAM:</label>
+            <input type="text" th:field="*{ram}" />
+        </div>
+        <div>
+            <label>Storage:</label>
+            <input type="text" th:field="*{storage}" />
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea th:field="*{description}"></textarea>
+        </div>
+        <div>
+            <label>Category:</label>
+            <select th:field="*{category}">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label>Price:</label>
+            <input type="text" th:field="*{price}" />
+        </div>
+        <div>
+            <label>Quantity:</label>
+            <select id="quantityDropdown" name="quantity" th:field="*{quantity}" onchange="toggleQuantityInput()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="more">More</option>
+            </select>
+            <input type="text" id="moreQuantityInput" name="moreQuantity" style="display: none;" placeholder="Enter quantity" />
+        </div>
+        <div>
+            <label>Image:</label>
+            <input type="file" name="imageFile" />
+        </div>
+        <div>
+            <button type="submit">Add Product</button>
+        </div>
+    </form>
+</body>
+</html>

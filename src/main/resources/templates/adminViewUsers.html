@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin View Users</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.isApproved ? 'Approved' : 'Pending'}"></td>
+                <td>
+                    <form th:action="@{/admin/approveUser/{id}(id=${user.id})}" method="post">
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form th:action="@{/admin/rejectUser/{id}(id=${user.id})}" method="post">
+                        <button type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

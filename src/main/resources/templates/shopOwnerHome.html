@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop Owner Home</title>
+</head>
+<body>
+    <h1>Welcome, <span th:text="${username}">Shop Owner</span></h1>
+
+
+    <!-- Optional form for product type selection -->
+    <form id="productForm" method="get" action="#" onsubmit="return handleSubmit(this);">
+        <label for="productType">Product:</label>
+        <select id="productType" name="productType" onchange="handleSelectChange(this)">
+            <option value="" disabled selected>Select your option</option>
+            <option value="/addProduct">New Products</option>
+            <option value="/viewProducts">View Products</option>
+        </select>
+    </form>
+
+    <script>
+        function handleSelectChange(select) {
+            const action = select.value;
+            if (action) {
+                window.location.href = action;
+            }
+        }
+
+        function handleSubmit(form) {
+            // Prevent default form submission to handle via JavaScript
+            return false;
+        }
+    </script>
+</body>
+</html>

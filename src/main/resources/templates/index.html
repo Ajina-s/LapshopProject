@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>Welcome to Our E-commerce Site</h1>
+    
+    <form id="index" method="get">
+        <label for="registrationType">Register as:</label>
+        <select id="registrationType" name="registrationType" onchange="this.form.action=this.value; this.form.submit();">
+            <option value="" disabled selected>Select your option</option>
+            <option th:value="@{/userregistration}">User</option>
+            <option th:value="@{/ownerregistration}">Shop Owner</option>
+        </select>
+        <li><a href="login">Login</a>
+        <label></label>
+    </form>
+</body>
+</html>

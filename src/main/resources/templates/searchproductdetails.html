@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Product Details</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-fluid" th:src="@{/image/{id}(id=${product.id})}" alt="Product Image">
+            </div>
+            <div class="col-md-6">
+                <h3 th:text="${product.name}"></h3>
+                <p th:text="${product.description}"></p>
+                <p><strong>Price:</strong> $<span th:text="${product.price}"></span></p>
+                <p><strong>Processor:</strong> <span th:text="${product.processor}"></span></p>
+                <p><strong>Storage:</strong> <span th:text="${product.storage}"></span></p>
+                <a class="btn btn-success" href="#">Add to Cart</a>
+                <a class="btn btn-primary" href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

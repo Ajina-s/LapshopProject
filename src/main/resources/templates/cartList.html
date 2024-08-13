@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart List</title>
+    <link rel="stylesheet" href="/cartlist.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="card-container">
+            <div class="card" th:each="item : ${cartItems}">
+                <img th:src="@{/image/{id}(id=${item.product.id})}" alt="Product Image" class="card-img"/>
+                <div class="card-body">
+                    <h2 th:text="${item.product.name}"></h2>
+                    <p>Quantity: <span th:text="${item.quantity}"></span></p>
+                    <p>Amount: <span th:text="${item.amount}"></span></p>
+                     <a th:href="@{/orderPage(cartIds=${item.id})}" class="btn">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

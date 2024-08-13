@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quantity Selection</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Select Quantity</h1>
+        <div class="product-card">
+            <img th:src="@{/image/{id}(id=${product.id})}" alt="Product Image" />
+            <h2 th:text="${product.name}"></h2>
+            <p><strong>Brand:</strong> <span th:text="${product.brand}"></span></p>
+            <p><strong>Model:</strong> <span th:text="${product.model}"></span></p>
+            <p><strong>Processor:</strong> <span th:text="${product.processor}"></span></p>
+            <p><strong>Storage:</strong> <span th:text="${product.storage}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+            <p><strong>Price:</strong> <span th:text="${product.price}"></span></p>
+        </div>
+        <form action="/saveCart" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <label for="quantity">Quantity:</label>
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="more">More</option>
+            </select>
+            <div id="customQuantity" style="display:none;">
+                <label for="customQuantity">Enter Quantity:</label>
+                <input type="number" id="customQuantity" name="customQuantity" min="1" />
+            </div>
+            <input type="submit" value="Add to Cart" />
+        </form>
+        <script>
+            document.getElementById('quantity').addEventListener('change', function() {
+                var value = this.value;
+                if (value === 'more') {
+                    document.getElementById('customQuantity').style.display = 'block';
+                } else {
+                    document.getElementById('customQuantity').style.display = 'none';
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

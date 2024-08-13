@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            margin-bottom: 20px;
+        }
+
+        .product-details p {
+            margin: 5px 0;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+        }
+
+        .address-format {
+            white-space: pre-line; /* Preserves line breaks */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Order Details</h1>
+                
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <p><strong>User:</strong> <span th:text="${user.fullName}"></span></p>
+                    <p class="address-format">
+                        <strong>Address:</strong><br>
+                        <span th:text="${user.address}"></span><br>
+                        <span th:text="${user.city}"></span>, 
+                        <span th:text="${user.contact}"></span>
+                    </p>
+                </div>
+
+                <!-- Display products in order -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div th:each="item : ${cartItems}" class="card">
+                            <img class="product-image" th:src="@{/image/{id}(id=${item.product.id})}" alt="Product Image">
+                            <div class="card-body">
+                                <h2 class="card-title" th:text="${item.product.name}">Product Name</h2>
+                                <div class="product-details">
+                                    <p><strong>Price:</strong> $<span th:text="${item.product.price}"></span></p>
+                                    <p><strong>Quantity:</strong> <span th:text="${item.quantity}"></span></p>
+                                    <p><strong>Amount:</strong> $<span th:text="${item.amount}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Order Button -->
+                <form th:action="@{/placeOrder}" method="post">
+                    <input type="hidden" name="cartIds" th:value="${#strings.arrayJoin(cartIds, ',')}">
+                    <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

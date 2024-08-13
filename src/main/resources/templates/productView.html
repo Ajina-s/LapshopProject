@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Product</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <div>
+        <p>ID: <span th:text="${product.id}"></span></p>
+        <p>Name: <span th:text="${product.name}"></span></p>
+        <p>Brand: <span th:text="${product.brand}"></span></p>
+        <p>Model: <span th:text="${product.model}"></span></p>
+        <p>Processor: <span th:text="${product.processor}"></span></p>
+        <p>RAM: <span th:text="${product.ram}"></span></p>
+        <p>Storage: <span th:text="${product.storage}"></span></p>
+        <p>Description: <span th:text="${product.description}"></span></p>
+        <p>Category: <span th:text="${product.category.name}"></span></p>
+        <p>Price: <span th:text="${product.price}"></span></p>
+         <p>quantity: <span th:text="${product.quantity}"></span></p>
+        <p>Image:</p>
+        <img th:src="'data:image/jpeg;base64,' + ${product.imageBase64}" alt="Product Image"/>
+    </div>
+    <a href="/viewProducts">Back to Products</a>
+</body>
+</html>

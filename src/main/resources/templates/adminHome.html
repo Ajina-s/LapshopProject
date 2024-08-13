@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Home</title>
+</head>
+<body>
+    
+    <form id="index" method="get">
+    <h1>Welcome, Admin</h1>
+    <a href="/admin/users">View Users</a> <br>
+    <a href="/admin/shopowners">View Shop Owners</a>
+   
+        <label for="registrationType">Category:</label>
+        <select id="registrationType" name="categoryType" onchange="this.form.action=this.value; this.form.submit();">
+            <option value="" disabled selected>Select your option</option>
+            <option th:value="@{/admin/category}">AddCategory</option>
+            <option th:value="@{/admin/categories}">View Category</option>
+        </select>
+</body>
+</html>
